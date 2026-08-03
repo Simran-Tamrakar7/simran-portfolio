@@ -1,6 +1,6 @@
 # Simran Tamrakar — Portfolio
 
-Static site for **simran.tamrakar.com.np**.
+Static site for **simrantamrakar.com.np**.
 
 ## Local preview
 
@@ -18,7 +18,7 @@ Suggested Cloudflare / DNS:
 
 1. Push this repo to GitHub.
 2. Connect the host to the repo.
-3. Add `simran.tamrakar.com.np` as a custom domain.
+3. Add `simrantamrakar.com.np` as a custom domain.
 4. Update the contact email in `index.html` once mail is set up.
 
 ## Files
