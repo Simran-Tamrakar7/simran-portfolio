@@ -42,3 +42,50 @@ if (rows.length && "IntersectionObserver" in window) {
 } else {
   rows.forEach((row) => row.classList.add("is-in"));
 }
+
+/* PWA: register SW, poll for updates after deploys, offer reload */
+if ("serviceWorker" in navigator) {
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (refreshing) return;
+    refreshing = true;
+    window.location.reload();
+  });
+
+  window.addEventListener("load", async () => {
+    try {
+      const reg = await navigator.serviceWorker.register("./sw.js", { scope: "./" });
+
+      const toast = document.getElementById("pwa-toast");
+      const btn = document.getElementById("pwa-refresh");
+      const askReload = (worker) => {
+        if (!toast || !btn) {
+          worker.postMessage("SKIP_WAITING");
+          return;
+        }
+        toast.hidden = false;
+        btn.onclick = () => worker.postMessage("SKIP_WAITING");
+      };
+
+      if (reg.waiting) askReload(reg.waiting);
+      reg.addEventListener("updatefound", () => {
+        const worker = reg.installing;
+        if (!worker) return;
+        worker.addEventListener("statechange", () => {
+          if (worker.state === "installed" && navigator.serviceWorker.controller) {
+            askReload(worker);
+          }
+        });
+      });
+
+      const check = () => reg.update().catch(() => {});
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") check();
+      });
+      window.addEventListener("focus", check);
+      setInterval(check, 5 * 60 * 1000);
+    } catch {
+      /* offline / file:// — ignore */
+    }
+  });
+}

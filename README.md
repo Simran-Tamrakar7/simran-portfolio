@@ -28,6 +28,14 @@ Suggested Cloudflare / DNS:
 | `index.html` | Portfolio |
 | `cv.html` | Rough printable CV (Print → Save as PDF) |
 | `styles.css` / `script.js` | Site styles & motion |
+| `manifest.webmanifest` / `sw.js` | PWA install + offline shell |
+| `assets/icons/` | App icons (192 / 512) |
+
+## PWA
+
+Install from the browser (Add to Home Screen / Install app). The service worker is **network-first**, so deploys show up while online; offline uses the last cached copy. After a publish, returning visitors get an **Update ready → Reload** prompt (or auto-refresh once the new worker activates).
+
+When you change `sw.js` or precached paths, bump the `CACHE` string in `sw.js` so old caches are cleared.
 
 ## Notes
 
