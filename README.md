@@ -39,4 +39,4 @@ When you change `sw.js` or precached paths, bump the `CACHE` string in `sw.js` s
 
 ## Notes
 
-CV and ISPL title are drafted from public LinkedIn/GitHub. Confirm title, dates, and contact details before sending.
+Portfolio and `cv.html` skills/experience are aligned with `simran-tamrakar-cv.md` (QA Associate at Infocom Solutions; full testing toolkit).
