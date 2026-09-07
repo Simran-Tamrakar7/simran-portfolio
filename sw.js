@@ -1,6 +1,6 @@
 /* ponytail: network-first shell so deploys show up online; cache is offline fallback.
    Bump CACHE when you change this file (or any precache URL) so old caches drop. */
-const CACHE = "simran-portfolio-v2";
+const CACHE = "simran-portfolio-v3";
 const PRECACHE = [
   "./",
   "./index.html",
